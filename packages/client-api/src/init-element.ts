@@ -71,6 +71,7 @@ export async function initElement(
     // provider.
     setElementContext('parsedConfig', parsedConfig);
 
+    // Build the CSS for the element.
     runWithOwner(args.owner, () => {
       createEffect(() => {
         if (parsedConfig.styles) {
@@ -78,6 +79,18 @@ export async function initElement(
             parsedConfig.id,
             parsedConfig.styles,
           );
+        }
+      });
+    });
+
+    // Import the scripts for the element.
+    runWithOwner(args.owner, () => {
+      createEffect(() => {
+        if (parsedConfig.events) {
+          for (const event of parsedConfig.events) {
+            const split = event.fn_path.split('#');
+            import(split[0]!).then(module => module[split[1]!]!);
+          }
         }
       });
     });
@@ -112,7 +125,7 @@ export async function initElement(
 
       await messageDialog((err as Error)?.message ?? 'Unknown reason.', {
         title: 'Failed to initialize element!',
-        type: 'error',
+        kind: 'error',
       });
     }
 
