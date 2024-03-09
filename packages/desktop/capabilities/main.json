@@ -7,6 +7,12 @@
     "app:default",
     "dialog:allow-message",
     "event:default",
+    {
+      "identifier": "fs:allow-read",
+      "allow": [{ "path": "$HOME/*" }]
+    },
+    "path:allow-resolve-directory",
+    "path:default",
     "window:default",
     "window:allow-center",
     "window:allow-close",
