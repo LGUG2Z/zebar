@@ -58,6 +58,7 @@ pub struct KomorebiWindow {
 pub enum KomorebiLayout {
   Bsp,
   VerticalStack,
+  RightMainVerticalStack,
   HorizontalStack,
   UltrawideVerticalStack,
   Rows,
@@ -74,6 +75,7 @@ impl From<Layout> for KomorebiLayout {
         DefaultLayout::Rows => KomorebiLayout::Rows,
         DefaultLayout::VerticalStack => KomorebiLayout::VerticalStack,
         DefaultLayout::HorizontalStack => KomorebiLayout::HorizontalStack,
+        DefaultLayout::RightMainVerticalStack => KomorebiLayout::RightMainVerticalStack,
         DefaultLayout::UltrawideVerticalStack => {
           KomorebiLayout::UltrawideVerticalStack
         }
